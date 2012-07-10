@@ -1,5 +1,4 @@
 
-
 // This demo does web requests to a fixed IP address, using a fixed gateway.
 // 2010-11-27 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
 
@@ -145,7 +144,7 @@ void setHome()
    digitalWrite( homeLedPin, HIGH ) ;
    digitalWrite( awayLedPin, LOW  ) ;
              
-   ether.browseUrl(PSTR("/space/index.php?state=open&key=blablabla"), "", techincSite, my_callback ) ;      
+   ether.browseUrl(PSTR("/space/index.php?state=open&key=KEYHERE"), "", techincSite, my_callback ) ;      
   } 
 
 
@@ -156,7 +155,7 @@ void setAway()
    digitalWrite( homeLedPin, LOW  ) ;
    digitalWrite( awayLedPin, HIGH ) ;
     // /space/index.php?state=closed&key=blablabla          
-   ether.browseUrl(PSTR("/space/index.php?state=closed&key=blablabla"), "", techincSite, my_callback ) ;          
+   ether.browseUrl(PSTR("/space/index.php?state=closed&key=KEYHERE"), "", techincSite, my_callback ) ;          
   }
 
 
