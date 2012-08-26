@@ -8,11 +8,7 @@
 
 #define REQUEST_RATE 5000 // milliseconds
 
-static byte techincIp[] = { 82, 94, 235, 169 } ;
-
 char techincSite[] PROGMEM = "www.techinc.nl";
-char googleSite[] PROGMEM = "www.google.com";
-
 
 // ethernet interface mac address
 static byte mymac[] = { 0x74,0x69,0x69,0x2D,0x30,0x31 };
@@ -22,86 +18,15 @@ static byte myip[] = { 192,168,3,203 }; // nanode ip
 static byte gwip[] = { 192,168,3,1 }; // gateway (router) ip
 // remote website ip address and port
 static byte hisip[] = { 192,168,3,1 }; // ip of the site you request
-// remote website name
-char website[] PROGMEM = "192.168.3.1"; // the hostname of the url of the site you request
 
 // ~guidocalvano/
 static BufferFiller bfill;  // used as cursor while filling the buffer
 byte Ethernet::buffer[500];   // a very small tcp/ip buffer is enough here
-static long timer;
 
 int awayLedPin = 6 ;
 int homeLedPin = 3 ;
 int buttonPin = 2 ;
 
-/*
-
-char page[] PROGMEM = "HTTP/1.0 200 OK\r\n"
-"Content-Type: text/html\r\n"
-"\r\n"
-"<html>"
-  "<head><title>"
-    "No worries"
-  "</title></head>"
-  "<body>"
-    "<h3>This service is currently fine</h3>"
-    "<p><em>"
-      "The main server is currently on-line.<br />"
-    "</em></p>"
-  "</body>"
-"</html>"
-;
-*/
-
-
-byte* nextLine( byte* bufferOffset )
-  {
-   while( *bufferOffset != '\n' )
-     bufferOffset++ ;
-   
-   bufferOffset++ ;
-   
-   return bufferOffset ; 
-  } ;
-
-/*
-void processUpdate()
-  {
-   word len = ether.packetReceive() ;
-   word pos = ether.packetLoop(len) ;
-
-   if( pos )
-      {
-        
-       Serial.println( "start of packet\n" );
-       bfill = ether.tcpOffset();
-       byte* dataOffset = (byte*) Ethernet::buffer + pos ;
-    
-       Serial.println( (char*) dataOffset ) ;
-    
-       byte* next = nextLine( nextLine( nextLine( nextLine( nextLine( nextLine( dataOffset ) ) ) ) ) ) ;
-       
-       Serial.println( "payload" ) ;
-       Serial.println( (char*) next ) ;
-    
-       word offset = *next ;
-       next++ ;
-       word length = *next ;
-       next++ ;
-    
-       for( int i = 0 ; i < length ; i++ )
-          {
-           pwmVal[ offset + i ] =  *next ;
-           next++ ;
-          } 
-
-       Serial.println( "end of packet\n" );
-    
-       memcpy_P(ether.tcpOffset(), page, sizeof page);
-       ether.httpServerReply(sizeof page - 1);
-     }    
-    } ;
-*/
 // called when the client request is complete
 
 static void my_callback (byte status, word off, word len) {
